@@ -8,7 +8,7 @@
 - [x] Implement exit
 - [x] Implement echo
 - [x] Implement type
-- [ ] Locate executable files
+- [x] Locate executable files
 - [ ] Run a program
 
 ## Navigation

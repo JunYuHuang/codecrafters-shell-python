@@ -1,11 +1,10 @@
 import sys
 
-
 def main():
-    sys.stdout.write("$ ")
- 
-    command = input()
-    sys.stdout.write("{}: command not found".format(command))
+    while True:
+        sys.stdout.write("$ ")
+        command = input()
+        sys.stdout.write("{}: command not found\n".format(command))
 
 """
 TODO: explain this Python idiom

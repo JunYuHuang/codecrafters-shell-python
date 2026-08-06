@@ -4,7 +4,7 @@
 
 - [x] Print a prompt
 - [x] Handle invalid commands
-- [ ] Implement a REPL
+- [x] Implement a REPL
 - [ ] Implement exit
 - [ ] Implement echo
 - [ ] Implement type

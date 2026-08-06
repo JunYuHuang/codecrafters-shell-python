@@ -4,6 +4,8 @@ def main():
     while True:
         sys.stdout.write("$ ")
         command = input()
+        if command == "exit":
+            break
         sys.stdout.write("{}: command not found\n".format(command))
 
 """

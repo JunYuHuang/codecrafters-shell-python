@@ -6,7 +6,7 @@
 - [x] Handle invalid commands
 - [x] Implement a REPL
 - [x] Implement exit
-- [ ] Implement echo
+- [x] Implement echo
 - [ ] Implement type
 - [ ] Locate executable files
 - [ ] Run a program

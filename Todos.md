@@ -3,7 +3,7 @@
 ## Stages
 
 - [x] Print a prompt
-- [ ] Handle invalid commands
+- [x] Handle invalid commands
 - [ ] Implement a REPL
 - [ ] Implement exit
 - [ ] Implement echo

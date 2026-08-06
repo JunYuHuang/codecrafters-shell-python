@@ -14,4 +14,3 @@
 - PEDAC: DS + Algo
     - get user input and save it in string variable `command`
     - print `{command}: command not found\n` to terminal output
-

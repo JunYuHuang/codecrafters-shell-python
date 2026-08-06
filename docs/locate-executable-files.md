@@ -1,0 +1,33 @@
+# Notes:
+
+- PEDAC: Problem
+    - input:
+        - `command`: string value equal to `type {type_arg}`
+        - `type_arg`: string that represents a shell command
+    - output: N/A
+    - side effects:
+        - if `type_arg` is a shell command built-in to this shell program,
+            - prints `{type_arg} is a shell builtin`
+        - else if `type_arg` is an executable file found in the first directory of the OS' `PATH` environment variable,
+            - prints `{command} is {full directory path to execuable}`
+        - else if `type_arg` is not any executable file found in any directory on the OS' `PATH` environment variable,
+            - prints `{type_arg}: not found`
+- PEDAC: Examples
+    - TODO
+- PEDAC: DS + Algo
+    - `does_type_arg_exist`: boolean set to false
+    - `path_env`: string value of path environment variable `PATH` on OS
+    - `path_dirs`: array of strings created from `path_env` by splitting it by the OS delimiter
+        - delimiter is `:` (colon) on Unix-like OS' or `;` (semicolon) on Windows NT
+    - loop for each string `dir` in `path_dirs`,
+        - if `dir` folder doesn't exist on disk,
+            - continue to next `dir`
+        - if `type_arg` is not a file in `dir`,
+            - continue to next `dir`
+        - if `type_arg` is not an executable file (in `dir`),
+            - continue to next `dir`
+        - print `{type_args} is {dir}`
+        - set `does_type_arg_exist` = true
+        - break out of loop
+    - if `does_type_arg_exist` is false,
+        - print `{type_arg}: not found`

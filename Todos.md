@@ -7,7 +7,7 @@
 - [x] Implement a REPL
 - [x] Implement exit
 - [x] Implement echo
-- [ ] Implement type
+- [x] Implement type
 - [ ] Locate executable files
 - [ ] Run a program
 

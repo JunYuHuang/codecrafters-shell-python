@@ -41,9 +41,10 @@ def main():
 
             if not does_command_exist:
                 sys.stdout.write("{}: not found\n".format(command))
-        elif re.match(rf"^(.)+(\n(.))*", user_input):
+        elif re.match(rf"^(\S)+(\n(\S))*", user_input):
             args = user_input.split(" ")
             command = args[0]
+            does_command_exist = False
             path_dirs = os.getenv("PATH").split(os.pathsep)
             for path_dir in path_dirs:
                 command_path = os.path.join(path_dir, command)
@@ -51,10 +52,14 @@ def main():
                     continue
                 if not os.access(command_path, os.X_OK):
                     continue
-                subprocess.run([command, *args[1:]])
+                does_command_exist = True
+                command_args = args if len(args) > 1 else [command]
+                subprocess.run([*command_args])
                 break
+            if not does_command_exist:
+                sys.stdout.write(f"{user_input}: command not found\n")
         else:
-            sys.stdout.write("{}: command not found\n".format(user_input))
+            sys.stdout.write(f"{user_input}: command not found\n")
 """
 TODO: explain this Python idiom
 """

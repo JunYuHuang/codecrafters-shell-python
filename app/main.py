@@ -5,6 +5,7 @@ class Command(StrEnum):
     EXIT = 'exit'
     ECHO = 'echo'
     TYPE = 'type'
+    PWD = 'pwd'
 
 BUILTIN_COMMANDS = { member.value for member in Command }
 
@@ -41,6 +42,9 @@ def main():
 
             if not does_command_exist:
                 sys.stdout.write("{}: not found\n".format(command))
+        elif re.match(rf"^{Command.PWD}$", user_input):
+            working_dir = os.path.abspath(f".{os.sep}")
+            sys.stdout.write(f"{working_dir}\n")
         elif re.match(rf"^(\S)+(\n(\S))*", user_input):
             args = user_input.split(" ")
             command = args[0]

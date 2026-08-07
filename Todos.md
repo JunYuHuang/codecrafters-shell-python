@@ -9,7 +9,7 @@
 - [x] Implement echo
 - [x] Implement type
 - [x] Locate executable files
-- [ ] Run a program
+- [x] Run a program
 
 ## Navigation
 

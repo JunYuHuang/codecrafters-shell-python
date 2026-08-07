@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, re, subprocess
 from enum import StrEnum
 
 class Command(StrEnum):
@@ -13,13 +13,13 @@ def main():
         sys.stdout.write("$ ")
         user_input = input()
 
-        if user_input == Command.EXIT:
+        if re.match(rf"^{Command.EXIT}$", user_input):
             break
-        elif len(user_input) >= 4 and user_input[:4] == Command.ECHO:
+        elif re.match(rf"^{Command.ECHO}.*$", user_input):
             first_space_pos = user_input.find(" ")
             echo_args = "" if first_space_pos == -1 else user_input[first_space_pos + 1:]
             sys.stdout.write(echo_args + "\n")
-        elif len(user_input) >= 4 and user_input[:4] == Command.TYPE:
+        elif re.match(rf"^{Command.TYPE}.*$", user_input):
             first_space_pos = user_input.find(" ")
             command = "" if first_space_pos == -1 else user_input[first_space_pos + 1:]
 
@@ -41,9 +41,20 @@ def main():
 
             if not does_command_exist:
                 sys.stdout.write("{}: not found\n".format(command))
+        elif re.match(rf"^(.)+(\n(.))*", user_input):
+            args = user_input.split(" ")
+            command = args[0]
+            path_dirs = os.getenv("PATH").split(os.pathsep)
+            for path_dir in path_dirs:
+                command_path = os.path.join(path_dir, command)
+                if not os.path.exists(command_path):
+                    continue
+                if not os.access(command_path, os.X_OK):
+                    continue
+                subprocess.run([command, *args[1:]])
+                break
         else:
             sys.stdout.write("{}: command not found\n".format(user_input))
-
 """
 TODO: explain this Python idiom
 """

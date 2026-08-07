@@ -1,0 +1,30 @@
+# Notes:
+
+- PEDAC: Problem
+    - input:
+        - `user_input`: string in format `{command} [arg1] ...[argN]` where
+            - `command`: substring that represents an external executable program
+                - of length 1+
+            - `[arg1]`: the first optional command-line argument passed to `command`
+            - `[argN]`: the `N`th optional command-line argument passed to `command`
+    - output: N/A
+    - side effects:
+        - if `command` is a program in one of the directories in the `PATH` environment variable & it is executable,
+            - run it with all passed arguments passed (if applicable)
+- PEDAC: Examples
+    - TODO
+- PEDAC: DS + Algo
+    - `does_command_exist`: boolean set to false
+    - `path_env`: string value of path environment variable `PATH` on OS
+    - `path_dirs`: array of strings created from `path_env` by splitting it by the OS delimiter
+        - delimiter is `:` (colon) on Unix-like OS' or `;` (semicolon) on Windows NT
+    - loop for each string `dir` in `path_dirs`,
+        - `command_path`: `dir` joined w/ `command`
+        - if `command_path` doesn't exist on disk,
+            - continue
+        - if `command_path` is not an executable file,
+            - continue
+        - set `does_type_arg_exist` = true
+        - break out of loop
+    - if `does_type_arg_exist` is true,
+        - run `command` with passed in arguments from `arg1` to `argN` (if applicable)

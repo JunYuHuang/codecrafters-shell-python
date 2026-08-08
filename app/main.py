@@ -48,6 +48,8 @@ def main():
         elif re.match(rf"^{Command.CD}(\s(\S)*)?$", user_input):
             first_space_pos = user_input.find(" ")
             target_dir = "" if first_space_pos == -1 else user_input[first_space_pos + 1:]
+            if target_dir == "~":
+                target_dir = os.getenv("HOME")
             if os.path.exists(target_dir):
                 os.chdir(os.path.realpath(target_dir))
             else:

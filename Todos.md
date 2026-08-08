@@ -14,7 +14,7 @@
 ## Navigation
 
 - [x] The pwd builtin
-- [ ] The cd builtin: Absolute paths
+- [x] The cd builtin: Absolute paths
 - [ ] The cd builtin: Relative paths
 - [ ] The cd builtin: Home directory
 

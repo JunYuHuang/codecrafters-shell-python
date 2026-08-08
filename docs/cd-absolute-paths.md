@@ -1,0 +1,23 @@
+# Notes:
+
+- PEDAC: Problem
+    - input:
+        - `user_input`: string in format `cd [target_dir]` where
+            - `target_dir`: string that represents an absolute path to a directory
+                - directory may or may not exist
+                - of length in range \[1, INF]
+    - output: N/A
+    - side effects:
+        - if `target_dir` exists,
+            - changes the current working directory to it
+        - else,
+            - prints `cd: {target_dir}: No such file or directory`
+        - running command `pwd` should reflect the updated current working directory if it was updated or not
+- PEDAC: Examples
+    - TODO
+- PEDAC: DS + Algo
+    - if `user_input` matches the `cd [target_dir]` pattern regex,
+        - if `target_dir` is a valid absolute path,
+            - change current working directory to it
+        - else,
+            - print `cd: {target_dir}: No such file or directory`

@@ -15,7 +15,7 @@
 
 - [x] The pwd builtin
 - [x] The cd builtin: Absolute paths
-- [ ] The cd builtin: Relative paths
+- [x] The cd builtin: Relative paths
 - [ ] The cd builtin: Home directory
 
 ## Quoting

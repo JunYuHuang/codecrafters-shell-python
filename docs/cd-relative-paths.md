@@ -1,0 +1,51 @@
+# Notes:
+
+- PEDAC: Problem
+    - input:
+        - `user_input`: string in format `cd [target_dir]` where
+            - `target_dir`: string that represents a relative path to a directory
+                - directory may or may not exist
+                - of length in range \[1, INF]
+                - valid format patterns:
+                    - `./`: refers to current working directory
+                    - `../`: refers to directory 1 level immediate above current working directory
+                    - `./{dir}`: refers to directory `dir` in current working directory
+                    - `{dir}`: refers to directory `dir` in current working directory
+    - output: N/A
+    - side effects:
+        - if `target_dir` exists,
+            - changes the current working directory to it
+        - else,
+            - prints `cd: {target_dir}: No such file or directory`
+        - running command `pwd` should reflect the updated current working directory if it was updated or not
+- PEDAC: Examples
+    - ex.1
+        - `cwd` = `/mnt/d/SoftwareProjects/codecrafters-shell-python`
+        - `user_input` = `cd ./docs`
+        - `res` = `/mnt/d/SoftwareProjects/codecrafters-shell-python/docs`
+    - ex.2
+        - `cwd` = `/mnt/d/SoftwareProjects/codecrafters-shell-python`
+        - `user_input` = `cd docs`
+        - `res` = `/mnt/d/SoftwareProjects/codecrafters-shell-python/docs`
+    - ex.3
+        - `cwd` = `/mnt/d/SoftwareProjects/codecrafters-shell-python`
+        - `user_input` = `cd ../`
+        - `res` = `/mnt/d/SoftwareProjects`
+    - ex.4
+        - `cwd` = `/mnt/d/SoftwareProjects/codecrafters-shell-python`
+        - `user_input` = `cd ./../codecrafters-shell-python`
+        - `res` = `/mnt/d/SoftwareProjects/codecrafters-shell-python`
+    - ex.5
+        - `cwd` = `/usr`
+        - `user_input` = `cd ./local/bin`
+        - `res` = `/usr/local/bin`
+    - ex.6
+        - `cwd` = `/usr/local/bin`
+        - `user_input` = `cd ../../`
+        - `res` = `/usr`
+    - ex.7
+        - `cwd` = `/usr`
+        - `user_input` = `cd local`
+        - `res` = `/usr/local`
+- PEDAC: DS + Algo
+    - just cheat and use `os.chdir` lmao

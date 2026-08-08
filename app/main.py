@@ -11,8 +11,6 @@ class Command(StrEnum):
 BUILTIN_COMMANDS = { member.value for member in Command }
 
 def main():
-    working_dir = os.path.abspath(f".{os.sep}")
-
     while True:
         sys.stdout.write("$ ")
         user_input = input()
@@ -46,12 +44,12 @@ def main():
             if not does_command_exist:
                 sys.stdout.write("{}: not found\n".format(command))
         elif re.match(rf"^{Command.PWD}$", user_input):
-            sys.stdout.write(f"{working_dir}\n")
+            sys.stdout.write(f"{os.getcwd()}\n")
         elif re.match(rf"^{Command.CD}(\s(\S)*)?$", user_input):
             first_space_pos = user_input.find(" ")
             target_dir = "" if first_space_pos == -1 else user_input[first_space_pos + 1:]
             if os.path.exists(target_dir):
-                working_dir = target_dir
+                os.chdir(os.path.realpath(target_dir))
             else:
                 sys.stdout.write(f"cd: {target_dir}: No such file or directory\n")
         elif re.match(rf"^(\S)+(\s(\S))*", user_input):
